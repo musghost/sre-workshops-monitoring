@@ -229,7 +229,7 @@ Modify the `purchase()` function to increase the counter when a purchase is succ
 ```diff
 def purchase():
     rand_option = randint(1, 10)
-    if rand_option > 1:
+    if rand_option < 1:
 +       successful_purchases_counter.inc()
         response_body = {
             'purchased_items': [
