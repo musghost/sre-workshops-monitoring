@@ -415,10 +415,12 @@ sum by (job) (rate(failed_purchases_total[5m]))
 Update the following import statement
 
 ```diff
-from flask import Flask, Response, request
+-from flask import Flask, Response
++from flask import Flask, Response, request
 from random import random, seed, randint
 -from prometheus_client import Counter, generate_latest
 +from prometheus_client import Counter, Histogram, generate_latest
++from time import time, sleep
 ```
 
 Add the new metric definition and a new function to add the obsevation
