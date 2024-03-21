@@ -261,7 +261,7 @@ def home():
 Restart the application to make use of new version of the code
 
 ```bash
-docker-compose restart my_app
+docker-compose up my_app -d
 ```
 
 Open the URL http://localhost:8080/metrics to check the metrics. You can reload it every now and then to check how the metrics are updated.
