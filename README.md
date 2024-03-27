@@ -229,7 +229,7 @@ Modify the `purchase()` function to increase the counter when a purchase is succ
 ```diff
 def purchase():
     rand_option = randint(1, 10)
-    if rand_option > 1:
+    if rand_option < 1:
 +       successful_purchases_counter.inc()
         response_body = {
             'purchased_items': [
@@ -261,7 +261,7 @@ def home():
 Restart the application to make use of new version of the code
 
 ```bash
-docker-compose restart my_app
+docker-compose up my_app -d
 ```
 
 Open the URL http://localhost:8080/metrics to check the metrics. You can reload it every now and then to check how the metrics are updated.
@@ -415,10 +415,12 @@ sum by (job) (rate(failed_purchases_total[5m]))
 Update the following import statement
 
 ```diff
-from flask import Flask, Response, request
+-from flask import Flask, Response
++from flask import Flask, Response, request
 from random import random, seed, randint
 -from prometheus_client import Counter, generate_latest
 +from prometheus_client import Counter, Histogram, generate_latest
++from time import time, sleep
 ```
 
 Add the new metric definition and a new function to add the obsevation
